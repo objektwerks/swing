@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <context:component-scan base-package="com.ndr.app.stock.screener"/>
+    
+    <bean id="resourceManager" class="com.ndr.app.stock.screener.resource.ResourceManager">
+        <property name="basenames">
+            <list>
+                <value>resources</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="httpClient" class="org.apache.commons.httpclient.HttpClient" scope="prototype">
+        <property name="connectionTimeout" value="30000"/>
+        <property name="httpConnectionFactoryTimeout" value="30000"/>
+        <property name="timeout" value="60000"/>
+    </bean>
+
+    <bean id="httpInvokerRequestExecutor" class="org.springframework.remoting.httpinvoker.CommonsHttpInvokerRequestExecutor" scope="prototype">
+        <property name="httpClient" ref="httpClient"/>
+    </bean>
+    
+    <bean id="stockScreenerServiceProxy" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl" value="http://yag:9080/stock.screener/remoting/StockScreenerService"/>
+        <property name="serviceInterface" value="com.ndr.service.stock.screener.StockScreenerService"/>
+        <property name="httpInvokerRequestExecutor" ref="httpInvokerRequestExecutor"/>
+    </bean>
+
+    <bean id="stockScreenerUserServiceProxy" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl" value="http://yag:9080/stock.screener/remoting/StockScreenerUserService"/>
+        <property name="serviceInterface" value="com.ndr.service.stock.screener.StockScreenerUserService"/>
+        <property name="httpInvokerRequestExecutor" ref="httpInvokerRequestExecutor"/>
+    </bean>    
+</beans>

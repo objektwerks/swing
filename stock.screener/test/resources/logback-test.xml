@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="A1" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%-5p: %d{ISO8601} [%t] %m%n</Pattern>
+		</layout>
+	</appender>
+	<logger name="org.hibernate" level="WARN" />
+	<logger name="org.springframework" level="WARN" />
+	<root level="INFO">
+		<appender-ref ref="A1" />
+	</root>
+</configuration>
