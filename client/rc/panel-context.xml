@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+  xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="repositoryPanel"
+          class="client.panel.RepositoryPanel"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="listRepositoriesAction" ref="listRepositoriesAction"/>
+        <property name="addRepositoryAction" ref="addRepositoryAction"/>
+        <property name="searchRepositoryListModelAction" ref="searchRepositoryListModelAction"/>
+        <property name="repositoryList" ref="repositoryList"/>
+        <property name="repositoryModelListeners">
+            <list>
+                <ref bean="groupPanel"/>
+                <ref bean="indexPanel"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="groupPanel"
+          class="client.panel.GroupPanel"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="groupList" ref="groupList"/>
+        <property name="domainListModel" ref="groupDomainList"/>
+        <property name="searchGroupListModelAction" ref="searchGroupListModelAction"/>
+        <property name="addGroupAction" ref="addGroupAction"/>
+        <property name="groupDomainPanel" ref="groupDomainPanel"/>
+        <property name="groupModelListeners">
+            <list>
+                <ref bean="groupDomainPanel"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="groupDomainPanel"
+          class="client.panel.GroupDomainPanel"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="groupDomainList" ref="groupDomainList"/>
+        <property name="indexComboBox" ref="indexComboBox"/>
+        <property name="searchGroupDomainListModelAction" ref="searchGroupDomainListModelAction"/>
+        <property name="addDomainAction" ref="addDomainAction"/>
+        <property name="updateDomainAction" ref="updateDomainAction"/>
+        <property name="loadDomainsAction" ref="loadDomainsAction"/>
+        <property name="searchDomainAction" ref="searchDomainAction"/>
+        <property name="domainModelListeners">
+            <list>
+                <ref bean="indexList"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="indexPanel"
+          class="client.panel.IndexPanel"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="indexList" ref="indexList"/>
+        <property name="domainListModel" ref="indexDomainList"/>
+        <property name="searchIndexListModelAction" ref="searchIndexListModelAction"/>
+        <property name="addIndexAction" ref="addIndexAction"/>
+        <property name="searchIndexAction" ref="searchIndexAction"/>
+        <property name="indexDomainPanel" ref="indexDomainPanel"/>
+        <property name="indexModelListeners">
+            <list>
+                <ref bean="indexDomainList"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="indexDomainPanel"
+          class="client.panel.IndexDomainPanel"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="indexDomainList" ref="indexDomainList"/>
+        <property name="searchIndexDomainListModelAction" ref="searchIndexDomainListModelAction"/>
+    </bean>
+    <bean id="eventPanel"
+          class="client.panel.EventPanel"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="eventTable" ref="eventTable"/>
+        <property name="listEventsAction" ref="listEventsAction"/>
+    </bean>
+    <bean id="monitorPanel"
+          class="client.panel.MonitorPanel"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="crawlsInProgressTable" ref="crawlsInProgressTable"/>
+        <property name="listCrawlsInProgressAction" ref="listCrawlsInProgressAction"/>
+    </bean>
+</beans>

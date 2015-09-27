@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+  xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="loginAction"
+          class="client.action.LoginAction"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="loginDialog" ref="loginDialog"/>
+        <property name="domainManager" ref="domainManager"/>
+        <property name="frame" ref="frame"/>
+    </bean>
+    <bean id="listRepositoriesAction"
+          class="client.action.ListRepositoriesAction"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="domainManager" ref="domainManager"/>
+        <property name="repositoryListModel" ref="repositoryList"/>
+        <property name="frame" ref="frame"/>
+    </bean>
+    <bean id="addRepositoryAction"
+          class="client.action.AddRepositoryAction"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="addRepositoryDialog" ref="addRepositoryDialog"/>
+        <property name="repositoryValidator" ref="repositoryValidator"/>
+        <property name="domainManager" ref="domainManager"/>
+        <property name="repositoryListModel" ref="repositoryList"/>
+    </bean>
+   <bean id="validateRepositoryAction"
+         class="client.action.ValidateRepositoryAction"
+         init-method="build">
+        <property name="addRepositoryDialog" ref="addRepositoryDialog"/>
+        <property name="repositoryValidator" ref="repositoryValidator"/>
+        <property name="resourceManager" ref="resourceManager"/>
+    </bean>
+    <bean id="addGroupAction"
+          class="client.action.AddGroupAction"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="addGroupDialog" ref="addGroupDialog"/>
+        <property name="groupValidator" ref="groupValidator"/>
+        <property name="groupModel" ref="groupPanel"/>
+        <property name="domainManager" ref="domainManager"/>
+        <property name="groupListModel" ref="groupList"/>
+        <property name="enabled" value="false"/>
+    </bean>
+    <bean id="validateGroupAction"
+          class="client.action.ValidateGroupAction"
+          init-method="build">
+         <property name="addGroupDialog" ref="addGroupDialog"/>
+         <property name="groupValidator" ref="groupValidator"/>
+         <property name="resourceManager" ref="resourceManager"/>
+     </bean>
+    <bean id="addIndexAction"
+          class="client.action.AddIndexAction"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="addIndexDialog" ref="addIndexDialog"/>
+        <property name="indexValidator" ref="indexValidator"/>
+        <property name="indexModel" ref="indexPanel"/>
+        <property name="domainManager" ref="domainManager"/>
+        <property name="indexListModel" ref="indexList"/>
+        <property name="enabled" value="false"/>
+    </bean>
+    <bean id="validateIndexAction"
+          class="client.action.ValidateIndexAction"
+          init-method="build">
+         <property name="addIndexDialog" ref="addIndexDialog"/>
+         <property name="indexValidator" ref="indexValidator"/>
+         <property name="resourceManager" ref="resourceManager"/>
+     </bean>
+    <bean id="addDomainAction"
+          class="client.action.AddDomainAction"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="addDomainDialog" ref="addDomainDialog"/>
+        <property name="domainValidator" ref="domainValidator"/>
+        <property name="domainModel" ref="groupDomainPanel"/>
+        <property name="domainManager" ref="domainManager"/>
+        <property name="domainListModel" ref="groupDomainList"/>
+        <property name="enabled" value="false"/>
+    </bean>
+    <bean id="loadDomainsAction"
+          class="client.action.LoadDomainsAction"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="loadDomainsDialog" ref="loadDomainsDialog"/>
+        <property name="frame" ref="frame"/>
+        <property name="groupListModel" ref="groupList"/>
+        <property name="domainListModel" ref="groupDomainList"/>
+        <property name="domainManager" ref="domainManager"/>
+        <property name="enabled" value="false"/>
+    </bean>
+    <bean id="updateDomainAction"
+          class="client.action.UpdateDomainAction"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="domainModel" ref="groupDomainPanel"/>
+        <property name="domainManager" ref="domainManager"/>
+        <property name="enabled" value="false"/>
+    </bean>
+    <bean id="validateDomainAction"
+          class="client.action.ValidateDomainAction"
+          init-method="build">
+         <property name="addDomainDialog" ref="addDomainDialog"/>
+         <property name="domainValidator" ref="domainValidator"/>
+         <property name="resourceManager" ref="resourceManager"/>
+     </bean>
+    <bean id="exitAction"
+          class="client.action.ExitAction"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+    </bean>
+    <bean id="searchRepositoryListModelAction"
+          class="client.action.SearchRepositoryListModelAction">
+        <property name="repositoryListModel" ref="repositoryList"/>
+    </bean>
+    <bean id="searchGroupListModelAction"
+          class="client.action.SearchGroupListModelAction">
+        <property name="groupListModel" ref="groupList"/>
+    </bean>
+    <bean id="searchIndexListModelAction"
+          class="client.action.SearchIndexListModelAction">
+        <property name="indexListModel" ref="indexList"/>
+    </bean>
+    <bean id="searchGroupDomainListModelAction"
+          class="client.action.SearchDomainListModelAction">
+        <property name="domainListModel" ref="groupDomainList"/>
+    </bean>
+    <bean id="searchIndexDomainListModelAction"
+          class="client.action.SearchDomainListModelAction">
+        <property name="domainListModel" ref="indexDomainList"/>
+    </bean>
+    <bean id="searchDomainAction"
+          class="client.action.SearchDomainAction">
+        <property name="domainListModel" ref="groupDomainList"/>
+        <property name="domainManager" ref="domainManager"/>
+        <property name="searchDialog" ref="searchDialog"/>
+        <property name="enabled" value="false"/>
+    </bean>
+    <bean id="searchIndexAction"
+          class="client.action.SearchIndexAction">
+        <property name="indexListModel" ref="indexList"/>
+        <property name="domainManager" ref="domainManager"/>
+        <property name="searchDialog" ref="searchDialog"/>
+        <property name="enabled" value="false"/>
+    </bean>
+    <bean id="listEventsAction"
+          class="client.action.ListEventsAction"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="domainManager" ref="domainManager"/>
+        <property name="eventListModel" ref="eventPanel"/>
+    </bean>
+    <bean id="listCrawlsInProgressAction"
+          class="client.action.ListCrawlsInProgressAction"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="domainManager" ref="domainManager"/>
+        <property name="monitorListModel" ref="monitorPanel"/>
+        <property name="frame" ref="frame"/>
+    </bean>
+</beans>

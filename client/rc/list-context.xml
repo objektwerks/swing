@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+  xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="repositoryList"
+          class="client.list.RepositoryList"
+          init-method="build">
+        <property name="repositoryListSelectionListener" ref="repositoryListSelectionListener"/>
+        <property name="repositoryListCellRenderer" ref="repositoryListCellRenderer"/>
+    </bean>
+    <bean id="groupList"
+          class="client.list.GroupList"
+          init-method="build">
+        <property name="groupListSelectionListener" ref="groupListSelectionListener"/>
+        <property name="groupListCellRenderer" ref="groupListCellRenderer"/>
+    </bean>
+    <bean id="groupDomainList"
+          class="client.list.GroupDomainList"
+          init-method="build">
+        <property name="groupDomainListSelectionListener" ref="groupDomainListSelectionListener"/>
+        <property name="domainListCellRenderer" ref="domainListCellRenderer"/>
+        <property name="domainListModelListeners">
+            <list>
+                <ref bean="groupDomainPanel"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="indexComboBox"
+          class="client.list.IndexComboBox"
+          init-method="build">
+        <property name="indexComboBoxCellRenderer" ref="indexComboBoxCellRenderer"/>
+    </bean>
+    <bean id="indexList"
+          class="client.list.IndexList"
+          init-method="build">
+        <property name="indexModel" ref="indexPanel"/>
+        <property name="indexListSelectionListener" ref="indexListSelectionListener"/>
+        <property name="indexListCellRenderer" ref="indexListCellRenderer"/>
+        <property name="indexListModelListeners">
+            <list>
+                <ref bean="indexComboBox"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="indexDomainList"
+          class="client.list.IndexDomainList"
+          init-method="build">
+        <property name="domainListCellRenderer" ref="domainListCellRenderer"/>
+    </bean>
+</beans>

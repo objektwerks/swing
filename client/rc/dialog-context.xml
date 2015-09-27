@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+  xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="loginDialog"
+          class="client.dialog.LoginDialog"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="loginAction" ref="loginAction"/>
+        <property name="exitAction" ref="exitAction"/>
+        <property name="frame" ref="frame"/>
+    </bean>
+    <bean id="addRepositoryDialog"
+          class="client.dialog.AddRepositoryDialog"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="validateRepositoryAction" ref="validateRepositoryAction"/>
+        <property name="frame" ref="frame"/>
+    </bean>
+    <bean id="addGroupDialog"
+          class="client.dialog.AddGroupDialog"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="validateGroupAction" ref="validateGroupAction"/>
+        <property name="frame" ref="frame"/>
+    </bean>
+    <bean id="addDomainDialog"
+          class="client.dialog.AddDomainDialog"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="validateDomainAction" ref="validateDomainAction"/>
+        <property name="frame" ref="frame"/>
+    </bean>
+    <bean id="addIndexDialog"
+          class="client.dialog.AddIndexDialog"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="validateIndexAction" ref="validateIndexAction"/>
+        <property name="frame" ref="frame"/>
+    </bean>
+    <bean id="searchDialog"
+          class="client.dialog.SearchDialog"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="frame" ref="frame"/>
+    </bean>
+    <bean id="loadDomainsDialog"
+          class="client.dialog.LoadDomainsDialog"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="domainTable" ref="domainTable"/>
+        <property name="frame" ref="frame"/>
+    </bean>
+</beans>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+  xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="frame"
+          class="client.frame.Frame"
+          init-method="build">
+        <property name="menu" ref="menuBar"/>
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="repositoryPanel" ref="repositoryPanel"/>
+        <property name="groupPanel" ref="groupPanel"/>
+        <property name="indexPanel" ref="indexPanel"/>
+        <property name="eventPanel" ref="eventPanel"/>
+        <property name="monitorPanel" ref="monitorPanel"/>
+    </bean>
+    <bean id="menuBar"
+          class="client.frame.MenuBar"
+          init-method="build">
+        <property name="resourceManager" ref="resourceManager"/>
+        <property name="exitAction" ref="exitAction"/>
+    </bean>
+</beans>

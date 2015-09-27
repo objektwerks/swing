@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+  xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <import resource="action-context.xml"/>
+    <import resource="frame-context.xml"/>
+    <import resource="panel-context.xml"/>
+    <import resource="list-context.xml"/>
+    <import resource="table-context.xml"/>
+    <import resource="dialog-context.xml"/>
+    <import resource="listener-context.xml"/>
+    <import resource="renderer-context.xml"/>
+    <import resource="scheduler-context.xml"/>
+    <import resource="validator-context.xml"/>
+    <bean id="resourceBundle"
+          class="java.util.ResourceBundle"
+          factory-method="getBundle">
+        <constructor-arg value="app"/>
+    </bean>
+    <bean id="propertyPlaceholderConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:service.properties</value>
+            </list>
+        </property>
+        <property name="ignoreUnresolvablePlaceholders">
+            <value>true</value>
+        </property>
+    </bean>
+    <bean id="domainManager"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl" value="${service.url}"/>
+        <property name="serviceInterface" value="${service.interface}"/>
+    </bean>
+    <bean id="resourceManager"
+          class="client.resource.ResourceManager">
+        <constructor-arg ref="resourceBundle"/>
+    </bean>
+</beans>

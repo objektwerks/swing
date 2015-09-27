@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+  xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="domainPoller"
+          class="client.poller.DomainPoller">
+        <property name="domainManager" ref="domainManager"/>
+        <property name="repositoryListModel" ref="repositoryList"/>
+        <property name="domainListModel" ref="groupDomainList"/>
+    </bean>
+    <bean id="domainPollerTimerTask" class="org.springframework.scheduling.timer.ScheduledTimerTask">
+        <!-- on app startup, delay execution 10" -->
+        <property name="delay" value="10000"/>
+        <!-- then execute task every 60" -->
+        <property name="period" value="60000"/>
+        <property name="timerTask" ref="domainPoller"/>
+    </bean>
+    <bean id="timerFactory" class="org.springframework.scheduling.timer.TimerFactoryBean">
+        <property name="scheduledTimerTasks">
+            <list>
+                <ref bean="domainPollerTimerTask"/>
+            </list>
+        </property>
+    </bean>
+</beans>
