@@ -1,5 +1,5 @@
-Java Swing Projects
--------------------
+Java Swing
+----------
 1. chart component
-2. nutch application
+2. client
 3. stock screener application
